@@ -23,15 +23,24 @@ function replaceCharWithRandom(text,char,target,probability){
  * @param {*} text 文本
  * @param {*} petPhrase 口癖
  */
-function run(text, petPhrase){
-    // 在末尾添加上口癖(如果没有的话)
+function runPetPhrases(text, petPhrase){
+    let punctuation = ['.',',','?','!','。','，','？','！'];
+    // 在末尾添加上口癖(如果没有且末尾不是标点符号结尾)
     if(!text.endsWith(petPhrase)){
-        text+petPhrase;
+        let add = true
+        for(let i=0;i<punctuation.length;i++){
+            if(text.endsWith(punctuation[i])) add = false
+        }
+        if(add){
+            text = text+petPhrase;
+        }
     }
     // 在标点符号前添加口癖
-    let punctuation = ['.',',','?','!','。','，','？','！'];
     for(let i=0;i<punctuation.length;i++){
-        text = replaceCharWithRandom(text,punctuation[i],punctuation[i]+petPhrase,0.5);
+        // 如果口癖不是以标点符号结尾,则加上标点
+        if(!petPhrase.endsWith(punctuation[i])){
+            text = replaceCharWithRandom(text,punctuation[i],petPhrase+punctuation[i],0.4);
+        }
     }
-
+    return text;
 }
