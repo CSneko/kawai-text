@@ -25,15 +25,23 @@ function replaceCharWithRandom(text,char,target,probability){
  */
 function runPetPhrases(text, petPhrase){
     let punctuation = ['.',',','?','!','。','，','？','！'];
-    // 在末尾添加上口癖(如果没有且末尾不是标点符号结尾)
+    /*
+    在末尾添加上口癖
+    如果没有且末尾不是标点符号结尾
+    如果末尾以标点结尾则直接替换掉标点
+     */
     if(!text.endsWith(petPhrase)){
         let add = true
         for(let i=0;i<punctuation.length;i++){
-            if(text.endsWith(punctuation[i])) add = false
+            if(text.endsWith(punctuation[i])) {
+                add = false
+                // 删除最后一个字符
+                text = text.substring(0,text.length-1);
+                break
+            }
         }
-        if(add){
-            text = text+petPhrase;
-        }
+        text = text+petPhrase;
+        
     }
     // 在标点符号前添加口癖
     for(let i=0;i<punctuation.length;i++){
