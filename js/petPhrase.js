@@ -1,9 +1,9 @@
 /**
  * 随机替换
- * @param {*} text  原始文本
- * @param {*} char 要替换的文本
- * @param {*} target 目标文本
- * @param {*} probability 概率
+ * @param {string} text  原始文本
+ * @param {string} char 要替换的文本
+ * @param {string} target 目标文本
+ * @param {num} probability 概率
  * @returns 
  */
 function replaceCharWithRandom(text,char,target,probability){
@@ -20,8 +20,8 @@ function replaceCharWithRandom(text,char,target,probability){
 
 /**
  * 处理文本
- * @param {*} text 文本
- * @param {*} petPhrase 口癖
+ * @param {string} text 文本
+ * @param {string} petPhrase 口癖
  */
 function runPetPhrases(text, petPhrase){
     let punctuation = ['.',',','?','!','。','，','？','！'];
@@ -41,7 +41,6 @@ function runPetPhrases(text, petPhrase){
             }
         }
         text = text+petPhrase;
-        
     }
     // 在标点符号前添加口癖
     for(let i=0;i<punctuation.length;i++){
